@@ -151,7 +151,7 @@ func (b *BaseLayerClient) fetchSequencersList() ([]*types.Sequencer, error) {
 
 func (b *BaseLayerClient) validateBatch(batch *types.Batch) error {
 	if batch.StartHeight != atomic.LoadUint64(&b.latestHeight)+1 {
-		return fmt.Errorf("batch start height != latest height + 1. StartHeight %d, lastetHeight %d", batch.StartHeight, atomic.LoadUint64(&b.latestHeight))
+		return fmt.Errorf("batch start height != latest height + 1. StartHeight %d, latestHeight %d", batch.StartHeight, atomic.LoadUint64(&b.latestHeight))
 	}
 	if batch.EndHeight < batch.StartHeight {
 		return fmt.Errorf("batch end height must be greater than start height. EndHeight %d, StartHeight %d", batch.EndHeight, batch.StartHeight)
